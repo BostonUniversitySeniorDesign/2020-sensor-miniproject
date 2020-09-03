@@ -8,9 +8,6 @@ import argparse
 import asyncio
 import websockets
 import zlib
-import sys
-import typing as T
-import typing.io as Ti
 
 
 async def client(port: int, addr: str, max_packets: int, log_file: Path):
@@ -26,22 +23,11 @@ async def client(port: int, addr: str, max_packets: int, log_file: Path):
         else:
             print(qb)
 
-        with open(log_file, mode="a") as f:
-            for i in range(max_packets):
-                data = await websocket.recv()
-                _handle_packet(data, f)
-                if i % 5 == 0:
-                    f.flush()
-
-
-def _handle_packet(data: T.Union[str, bytes], f: Ti.TextIO):
-    if isinstance(data, str):
-        print(data)
-        f.write(data + "\n")
-    else:
-        print(
-            "unexpected binary data: ", data.decode("utf8", errors="ignore"), file=sys.stderr,
-        )
+        for i in range(max_packets):
+            data = await websocket.recv()
+            if i % 5 == 0:
+                print(f"{i} total messages received")
+            print(data)
 
 
 if __name__ == "__main__":
