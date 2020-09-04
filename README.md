@@ -35,15 +35,27 @@ Websockets are used for this task as they are lightweight and suited to irregula
 Python
 [websockets](https://websockets.readthedocs.io/)
 provide server / client Websockets API.
-Python websockets is installed (along with prerequisites) from Terminal:
 
-```sh
-python -m pip install websockets
-```
 
 Please "fork" this GitHub repository and place all your assignment responses and results into **Report.md** in your repository.
 By forking this repo, you will be able to more easily integrate any updates I might make to this repo as bugs are discovered or other enhancements are made.
 Report.md is a Markdown formatted text file with links to or inline figures of the plots generated in PNG format.
+
+This package is "cloned" to your computer after forking this repo like:
+
+```sh
+git clone https://github.com/username/2020-sensor-miniproject
+```
+
+The program is setup (including necessary prerequisites) by:
+
+```sh
+python -m pip install -e 2020-sensor-miniproject
+```
+
+The "-e" option makes the install in development mode, so that any changes made in this directory
+are used upon next `import sp_iotsim`.
+Change to directory "2020-sensor-miniproject" to edit and run the code.
 
 A simple example is run using two Terminal windows.
 In the first Terminal run:
