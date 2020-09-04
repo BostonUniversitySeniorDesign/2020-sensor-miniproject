@@ -9,19 +9,7 @@ The IoT simulator
 emits data packets with random timing to the backend service
 [ws_client.py](./ws_client.py).
 
-## Assignment
-
-This assignment is done in two-person teams, where each student should run the simulation and work together on the analysis and turn in **one joint report**.
-The maximum number of points possible for this assignment is 100.
-
-This simulation was tested to work on standard computers such as a laptop or Raspberry Pi.
-If you try to run it in a virtual machine or browser-based cloud resource, the code may not work or require additional system configuration.
-Typically sensor prototypes are worked on with a laptop, so that is the suggested use case for this assignment.
-
-
-### Task 0: setup Python websockets
-
-(15 points total for this section)
+## Background
 
 Prototyping across STEM disciplines is typically done with Python.
 If you don't already have Python,
@@ -35,6 +23,33 @@ Websockets are used for this task as they are lightweight and suited to irregula
 Python
 [websockets](https://websockets.readthedocs.io/)
 provide server / client Websockets API.
+
+Many web interfaces (in any code language) such as the Python websockets package
+use
+[coroutines](https://docs.python.org/3/library/asyncio-task.html)
+to allow low overhead handling of large numbers of clients.
+Python
+[asynchronous routines](https://docs.python.org/3/library/asyncio-dev.html)
+require specific syntax and call practices or they may fail to execute (hang forever) or crash.
+[async def](https://python.readthedocs.io/en/stable/library/asyncio-task.html)
+indicates an asynchronous function instead of
+[def](https://realpython.com/defining-your-own-python-function/)
+for an plain Python function.
+
+## Assignment
+
+This assignment is done in two-person teams, where each student should run the simulation and work together on the analysis and turn in **one joint report**.
+The maximum number of points possible for this assignment is 100.
+
+This simulation was tested to work on standard computers such as a laptop or Raspberry Pi.
+If you try to run it in a virtual machine or browser-based cloud resource, the code may not work or require additional system configuration.
+Typically sensor prototypes are worked on with a laptop, so that is the suggested use case for this assignment.
+
+
+
+### Task 0: setup Python websockets
+
+(15 points total for this section)
 
 
 Please "fork" this GitHub repository and place all your assignment responses and results into **Report.md** in your repository.
@@ -81,7 +96,7 @@ python ws_client.py
 
 Python standard library includes
 [JSON](https://docs.python.org/3/library/json.html),
-which is a common serialization format used to interchange data amongst networked devices.
+which is a common serialization format used to interchange data among networked devices.
 Normally we would store the retrieved data into a database.
 However here since we're just testing for a fixed amount of time and this is a short assignment, we just store the JSON data to a file as-is, line by line as they come in.
 
@@ -116,6 +131,16 @@ Run the server and client and collect data.
 Run them for at least 20 minutes so that you get hundreds of data values.
 The data will be stored to a text file that you implemented in Task #1 (be sure this file is actually saving data incrementally before you let it run for a while).
 
+Typically when analyzing data, whether simulated or from real sensors, we use an external library as directly using native Python types can be too slow and cumbersome for numerical analysis.
+Popular numeric libraries for Python include:
+
+* [Numpy](https://numpy.org) (underlies most engineering and science Python packages)
+* [Pandas](https://pandas.pydata.org/) (data science with large heterogeneous 1D and 2D data)
+* [Xarray](http://xarray.pydata.org/) (N-dimensional data science)
+
+To keep things simple, for this miniproject I think Pandas is adequate as using Xarray assumes one is already experience with Pandas.
+I don't think Xarray is necessary for this miniproject.
+
 #### Task 2 points
 
 (20 points total for this section)
@@ -126,6 +151,10 @@ The data will be stored to a text file that you implemented in Task #1 (be sure 
 * What is the mean and variance of the *time interval* of the sensor readings? Please plot its probability distribution function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points]
 
 ### Task 3: Design
+
+This coding would take place in a separate program (not within ws_client.py).
+This is to make things simpler since asynchronous programming requires specific syntax and practices that complicate things in a short project like this.
+
 
 (25 points total for this section)
 

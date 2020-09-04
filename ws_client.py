@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 """
 WebSockets client
+
+This program receives simulated data for multiple rooms, with multiple sensors per room.
+
+The default behavior is to only access the computer itself by parameter "localhost"
+so that no firewall edits are needed.
+
+The port number is arbitrary, as long as the server and client are on the same port all is well.
+
+Naturally, the server ws_server.py must be started before this client attempts to connect.
 """
 
 from pathlib import Path
@@ -11,6 +20,21 @@ import zlib
 
 
 async def client(port: int, addr: str, max_packets: int, log_file: Path):
+    """
+
+    Parameters
+    ----------
+
+    port: int
+        the network port to use (arbitrary, must match server)
+    addr: str
+        the address of the server (localhost if on same computer)
+    max_packets: int
+        to avoid using all the hard drive if the client is left running,
+        we set a maximum number of packets before shutting the client down
+    log_file: pathlib.Path
+        where to store the data received (student must add code for this)
+    """
 
     log_file = Path(log_file).expanduser()
 

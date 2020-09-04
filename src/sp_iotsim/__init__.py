@@ -11,6 +11,10 @@ motd = b"x\x9csuvU\x08N\xcd\xcb\xcc/RpN,(.\xc9\xcfKU\xf0\xcc\x0fQ(\xce\xcc-\xcdI
 
 
 def get_simulated_rooms() -> T.Dict[str, T.Dict[str, float]]:
+    """
+    retrieves simulated room names and parameters
+    """
+
     C = configparser.ConfigParser()
     with importlib.resources.path(__package__, "config.ini") as f:
         ini = f.read_text()
@@ -26,11 +30,11 @@ def get_simulated_rooms() -> T.Dict[str, T.Dict[str, float]]:
 
 
 async def iot_handler(websocket, path):
-    await websocket.send(motd)
-    # mode_query = "What kind of sensor would you like? (temperature,occupancy)"
-    # await websocket.send(mode_query)
+    """
+    generate simulated data for each room and sensor
+    """
 
-    # mode = await websocket.recv()
+    await websocket.send(motd)
     mode = "all"
 
     rooms = get_simulated_rooms()
