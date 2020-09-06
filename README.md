@@ -130,7 +130,7 @@ While file I/O streaming and many other options exist, for this assignment we ca
 
 (20 points total for this section)
 
-* Add Python code to ws_client.py that saves the JSON data to a text file as it comes in (message by message)
+* Add Python code to functions called by ws_client.py that saves the JSON data to a text file as it comes in (message by message)
 
 ### Task 2: Analysis
 
