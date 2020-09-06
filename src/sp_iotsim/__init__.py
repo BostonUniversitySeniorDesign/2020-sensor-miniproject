@@ -40,7 +40,7 @@ async def iot_handler(websocket, path):
     rooms = get_simulated_rooms()
 
     while True:
-        await asyncio.sleep(erlang.rvs(1, 0, size=1))
+        await asyncio.sleep(erlang.rvs(1, 0, size=1).item())
 
         room = random.choice(list(rooms.keys()))
         dat = {"time": datetime.now().isoformat()}

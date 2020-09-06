@@ -178,7 +178,6 @@ Some points to think about:
 
 ## Troubleshooting
 
-**NOTE**: Some have reported that for this project, MacOS works with Python 3.7 but not 3.8.
 See [Python.md](./Python.md) for how to switch Python versions.
 
 ### ws_client
