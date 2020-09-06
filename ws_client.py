@@ -71,4 +71,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(client(P.port, P.host, P.max_packets, P.log))
     except KeyboardInterrupt:
-        print(P.log_file)
+        print(P.log)
