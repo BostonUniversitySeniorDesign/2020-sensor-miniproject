@@ -4,20 +4,31 @@ on:
   push:
     paths:
       - "**/*.py"
+      - .github/workflows/ci.yml
 
 jobs:
 
-  run:
-    runs-on: ubuntu-latest
+  basic:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.7, 3.8]
+
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: ${{ matrix.python-version }}
 
-    - run: pip install -e .[tests,lint]
+    - run: pip install -e .[tests]
 
-    - run: flake8
-    - run: mypy .
+    - name: lint, type check
+      if: startsWith(matrix.os,'ubuntu')
+      run: |
+        pip install -e .[tests,lint]
+        flake8
+        mypy . src
 
     - run: pytest
