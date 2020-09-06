@@ -134,10 +134,10 @@ Typically when analyzing data, whether simulated or from real sensors, we use an
 Popular numeric libraries for Python include:
 
 * [Numpy](https://numpy.org) (underlies most engineering and science Python packages)
-* [Pandas](https://pandas.pydata.org/) (data science with large heterogeneous 1D and 2D data)
-* [Xarray](http://xarray.pydata.org/) (N-dimensional data science)
+* [Pandas](https://pandas.pydata.org) (data science with large heterogeneous 1D and 2D data)
+* [Xarray](https://xarray.pydata.org) (N-dimensional data science)
 
-To keep things simple, for this miniproject I think Pandas is adequate as using Xarray assumes one is already experience with Pandas.
+To keep things simple, for this miniproject I think Pandas is adequate as using Xarray assumes one is already experienced with Pandas.
 I don't think Xarray is necessary for this miniproject.
 
 #### Task 2 points
