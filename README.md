@@ -58,6 +58,8 @@ This package is "cloned" to your computer after forking this repo like:
 ```sh
 git clone https://github.com/username/2020-sensor-miniproject
 ```
+Your project can be synced to updates from the repo by
+[setting this repo as upstream](./Git.md).
 
 The program is setup (including necessary prerequisites) by:
 
@@ -98,11 +100,19 @@ Normally we would store the retrieved data into a database.
 However here since we're just testing for a fixed amount of time and this is a short assignment, we just store the JSON data to a file as-is, line by line as they come in.
 
 Python file operations are generally done via
-[open()](https://docs.python.org/3/library/functions.html#open)
-and can use syntax like:
+[pathlib](https://docs.python.org/3/library/pathlib.html#pathlib.Path.open).
+Example snippet:
 
 ```python
-file = open("myfile.txt", mode="a")
+from pathlib import Path
+
+# other code; argparse sets P.log value from command line as in ws_client.py
+
+filename = Path(P.log).expanduser()
+
+# other code
+
+file = filename.open("a")
 
 # other code
 
