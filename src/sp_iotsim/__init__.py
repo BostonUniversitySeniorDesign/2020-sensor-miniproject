@@ -59,4 +59,5 @@ async def iot_handler(websocket, path):
         try:
             await websocket.send(json.dumps({room: dat}))
         except websockets.exceptions.ConnectionClosedOK:
+            print("Closing connection to", websocket.remote_address)
             break

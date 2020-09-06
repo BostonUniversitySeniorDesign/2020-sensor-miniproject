@@ -51,7 +51,8 @@ async def client(port: int, addr: str, max_packets: int, log_file: Path):
         for i in range(max_packets):
             data = await websocket.recv()
             if i % 5 == 0:
-                print(f"{i} total messages received")
+                pass
+                # print(f"{i} total messages received")
             print(data)
 
 

@@ -34,6 +34,7 @@ async def main(host: str, port: int):
         read_limit=2 ** 10,
         max_queue=4,
     )
+
     await server.wait_closed()
 
 
