@@ -36,7 +36,8 @@ async def client(port: int, addr: str, max_packets: int, log_file: Path):
         where to store the data received (student must add code for this)
     """
 
-    log_file = Path(log_file).expanduser()
+    if log_file:
+        log_file = Path(log_file).expanduser()
 
     uri = f"ws://{addr}:{port}"
 
@@ -56,7 +57,7 @@ async def client(port: int, addr: str, max_packets: int, log_file: Path):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="WebSocket client")
-    p.add_argument("log_file", help="file to log JSON data")
+    p.add_argument("-l", "--log", help="file to log JSON data")
     p.add_argument("-host", help="Host address", default="localhost")
     p.add_argument("-port", help="network port", type=int, default=8765)
     p.add_argument(
@@ -68,6 +69,6 @@ if __name__ == "__main__":
     P = p.parse_args()
 
     try:
-        asyncio.run(client(P.port, P.host, P.max_packets, P.log_file))
+        asyncio.run(client(P.port, P.host, P.max_packets, P.log))
     except KeyboardInterrupt:
         print(P.log_file)
