@@ -17,7 +17,6 @@ If you don't already have Python,
 is a small but powerful Python distribution for MacOS, Windows and Linux.
 The Microsoft
 [Windows Store also has Python](https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l?activetab=pivot:overviewtab).
-Python 3.8 is recommended for this assignment and in general, particularly if you are using a Windows computer.
 
 Websockets are used for this task as they are lightweight and suited to irregular data streams.
 Python
@@ -178,6 +177,9 @@ Some points to think about:
 * would it be better to have the server poll the sensors, or the sensors reach out to the server when they have data?
 
 ## Troubleshooting
+
+**NOTE**: Some have reported that for this project, MacOS works with Python 3.7 but not 3.8.
+See [Python.md](./Python.md) for how to switch Python versions.
 
 ### ws_client
 
