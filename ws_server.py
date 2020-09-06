@@ -14,28 +14,8 @@ Naturally, this server must be started before the client(s) attempt to connect.
 
 import argparse
 import asyncio
-import websockets
-from sp_iotsim import iot_handler
 
-
-async def main(host: str, port: int):
-    """
-    starts the server and closes client connections
-
-    keeps running until user Ctrl-C
-    """
-
-    server = await websockets.serve(
-        iot_handler,
-        host=P.host,
-        port=P.port,
-        compression=None,
-        max_size=2 ** 12,
-        read_limit=2 ** 10,
-        max_queue=4,
-    )
-
-    await server.wait_closed()
+from sp_iotsim.server import main
 
 
 if __name__ == "__main__":
