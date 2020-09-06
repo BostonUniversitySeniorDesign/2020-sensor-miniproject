@@ -17,7 +17,6 @@ import asyncio
 import websockets
 from sp_iotsim import iot_handler
 
-PORT = 8765
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="WebSocket server")
@@ -25,11 +24,11 @@ if __name__ == "__main__":
     p.add_argument("port", help="network port", nargs="?", type=int, default=8765)
     P = p.parse_args()
 
-    print("SERVER: port", PORT)
+    print(f"SERVER: {P.host} port {P.port}")
     start_server = websockets.serve(
         iot_handler,
-        host="localhost",
-        port=PORT,
+        host=P.host,
+        port=P.port,
         compression=None,
         max_size=2 ** 12,
         read_limit=2 ** 10,
