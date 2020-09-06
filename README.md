@@ -176,3 +176,24 @@ Some points to think about:
 * how is this simulation deficient? What factors does it fail to account for?
 * how is the difficulty of initially using this Python websockets library as compared to a compiled language e.g. [C++ websockets](https://github.com/facundofarias/awesome-websockets#c-1)
 * would it be better to have the server poll the sensors, or the sensors reach out to the server when they have data?
+
+## Troubleshooting
+
+### ws_client
+
+> in create_connection
+>     raise OSError('Multiple exceptions: {}'.format(
+> OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+
+This typically indicates that ws_server.py isn't running (or wasn't fully started when ws_client.py was started).
+When running, the terminal where you typed
+
+```sh
+python ws_server.py
+```
+
+will print:
+
+```
+SERVER: port 8765
+```
