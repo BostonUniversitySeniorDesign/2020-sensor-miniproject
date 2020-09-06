@@ -45,11 +45,9 @@ If you try to run it in a virtual machine or browser-based cloud resource, the c
 Typically sensor prototypes are worked on with a laptop, so that is the suggested use case for this assignment.
 
 
-
 ### Task 0: setup Python websockets
 
 (15 points total for this section)
-
 
 Please "fork" this GitHub repository and place all your assignment responses and results into **Report.md** in your repository.
 By forking this repo, you will be able to more easily integrate any updates I might make to this repo as bugs are discovered or other enhancements are made.
@@ -154,11 +152,10 @@ I don't think Xarray is necessary for this miniproject.
 This coding would take place in a separate program (not within ws_client.py).
 This is to make things simpler since asynchronous programming requires specific syntax and practices that complicate things in a short project like this.
 
-
 (25 points total for this section)
 
-* implement an algorithm that detects anomalies in sensor data
-* Does a persistent change in these sensor statistics always indicate a failed sensor?
+* implement an algorithm that detects anomalies in **temperature** sensor data
+* Does a persistent change in temperature always indicate a failed sensor?
 * What are possible bounds on temperature for each room type?
 
 ### Task 4: Conclusions
