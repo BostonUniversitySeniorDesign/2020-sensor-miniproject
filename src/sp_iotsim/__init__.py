@@ -6,6 +6,7 @@ import typing as T
 import configparser
 from datetime import datetime
 import importlib.resources
+import websockets
 
 motd = b"x\x9csuvU\x08N\xcd\xcb\xcc/RpN,(.\xc9\xcfKU\xf0\xcc\x0fQ(\xce\xcc-\xcdI,\xc9/\x02\x00\xbe\xce\x0b\xe7"
 
@@ -39,6 +40,7 @@ async def iot_handler(websocket, path):
 
     rooms = get_simulated_rooms()
 
+    print("IoT simulator connected to", websocket.remote_address)
     while True:
         await asyncio.sleep(erlang.rvs(1, 0, size=1).item())
 
@@ -54,4 +56,7 @@ async def iot_handler(websocket, path):
         if mode.startswith(("all", "co")):
             dat["co2"] = gamma.rvs(rooms[room]["co"], size=1).tolist()
 
-        await websocket.send(json.dumps({room: dat}))
+        try:
+            await websocket.send(json.dumps({room: dat}))
+        except websockets.exceptions.ConnectionClosedOK:
+            break

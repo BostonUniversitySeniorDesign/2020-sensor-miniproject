@@ -18,14 +18,14 @@ import websockets
 from sp_iotsim import iot_handler
 
 
-if __name__ == "__main__":
-    p = argparse.ArgumentParser(description="WebSocket server")
-    p.add_argument("host", help="Host address", nargs="?", default="localhost")
-    p.add_argument("port", help="network port", nargs="?", type=int, default=8765)
-    P = p.parse_args()
+async def main(host: str, port: int):
+    """
+    starts the server and closes client connections
 
-    print(f"SERVER: {P.host} port {P.port}")
-    start_server = websockets.serve(
+    keeps running until user Ctrl-C
+    """
+
+    server = await websockets.serve(
         iot_handler,
         host=P.host,
         port=P.port,
@@ -34,6 +34,13 @@ if __name__ == "__main__":
         read_limit=2 ** 10,
         max_queue=4,
     )
+    await server.wait_closed()
 
-    asyncio.get_event_loop().run_until_complete(start_server)
-    asyncio.get_event_loop().run_forever()
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser(description="WebSocket IoT simulator server")
+    p.add_argument("host", help="Host address", nargs="?", default="localhost")
+    p.add_argument("port", help="network port", nargs="?", type=int, default=8765)
+    P = p.parse_args()
+
+    asyncio.run(main(P.host, P.port))
