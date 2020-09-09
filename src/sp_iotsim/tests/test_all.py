@@ -2,6 +2,7 @@ import sp_iotsim.server as server
 import sp_iotsim.client as client
 import random
 import asyncio
+import pytest
 
 
 def test_ini():
@@ -20,6 +21,7 @@ def test_generate():
     assert sorted(dat.keys()) == ["co2", "occupancy", "temperature", "time"], "wrong keys"
 
 
+@pytest.mark.timeout(20)
 def test_server(servlet):
     asyncio.run(client.main(8765, "localhost", 5))
     servlet.terminate()
