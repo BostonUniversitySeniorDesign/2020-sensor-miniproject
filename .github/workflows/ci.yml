@@ -31,4 +31,6 @@ jobs:
         flake8
         mypy . src
 
-    - run: pytest
+    - name: PyTest
+      timeout-minutes: 2
+      run: pytest
