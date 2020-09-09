@@ -24,4 +24,5 @@ if __name__ == "__main__":
     p.add_argument("port", help="network port", nargs="?", type=int, default=8765)
     P = p.parse_args()
 
+    print("IoT server starting")
     asyncio.run(main(P.host, P.port))
