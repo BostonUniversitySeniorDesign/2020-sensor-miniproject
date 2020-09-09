@@ -4,10 +4,10 @@
 
 The Fall 2020 sensor miniproject uses simulated internet-connected sensors.
 Simulated sensors are used to test proposed designs against impairments including delayed, missing or incorrect data.
-The IoT simulator
-[ws_server.py](./ws_server.py)
-emits data packets with random timing to the backend service
-[ws_client.py](./ws_client.py).
+The IoT simulator consists of a Websockets
+[server](./src/sp_iotsim/server.py)
+that emits data packets with random timing to the backend
+[client](./src/sp_iotsim/client.py).
 
 ## Background
 
@@ -75,13 +75,13 @@ A simple example is run using two Terminal windows.
 In the first Terminal run:
 
 ```sh
-python ws_server.py
+python -m sp_iotsim.server
 ```
 
 then open another Terminal / Command Prompt and type:
 
 ```sh
-python ws_client.py
+python -m sp_iotsim.client
 ```
 
 #### Task 0 points
@@ -106,7 +106,7 @@ Example snippet:
 ```python
 from pathlib import Path
 
-# other code; argparse sets P.log value from command line as in ws_client.py
+# other code; argparse sets P.log value from command line
 
 filename = Path(P.log).expanduser()
 
@@ -130,7 +130,7 @@ While file I/O streaming and many other options exist, for this assignment we ca
 
 (20 points total for this section)
 
-* Add Python code to functions called by ws_client.py that saves the JSON data to a text file as it comes in (message by message)
+* Add Python code to Websockets client that saves the JSON data to a text file as it comes in (message by message)
 
 ### Task 2: Analysis
 
@@ -159,7 +159,7 @@ I don't think Xarray is necessary for this miniproject.
 
 ### Task 3: Design
 
-This coding would take place in a separate program (not within ws_client.py).
+This coding would take place in a separate script you create.
 This is to make things simpler since asynchronous programming requires specific syntax and practices that complicate things in a short project like this.
 
 (25 points total for this section)
@@ -187,21 +187,21 @@ Some points to think about:
 
 See [Python.md](./Python.md) for how to switch Python versions.
 
-### ws_client
+### client
 
 > in create_connection
 >     raise OSError('Multiple exceptions: {}'.format(
 > OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
 
-This typically indicates that ws_server.py isn't running (or wasn't fully started when ws_client.py was started).
+This typically indicates that Websockets server isn't running (or wasn't fully started when client was started).
 When running, the terminal where you typed
 
 ```sh
-python ws_server.py
+python -m sp_iotsim.server
 ```
 
 will print:
 
 ```
-SERVER: port 8765
+IoT server starting:  localhost port 8765
 ```
