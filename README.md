@@ -44,7 +44,6 @@ This simulation was tested to work on standard computers such as a laptop or Ras
 If you try to run it in a virtual machine or browser-based cloud resource, the code may not work or require additional system configuration.
 Typically sensor prototypes are worked on with a laptop, so that is the suggested use case for this assignment.
 
-
 ### Task 0: setup Python websockets
 
 (15 points total for this section)
@@ -58,6 +57,7 @@ This package is "cloned" to your computer after forking this repo like:
 ```sh
 git clone https://github.com/username/2020-sensor-miniproject
 ```
+
 Your project can be synced to updates from the repo by
 [setting this repo as upstream](./Git.md).
 
@@ -126,6 +126,9 @@ file.close()
 
 While file I/O streaming and many other options exist, for this assignment we can simply write within the main `for` or `while` loop.
 
+Note: We **do not** redirect stdout to a file via the command line e.g. `python -m sp_iotsim.client > dat.json` because this bypasses Python exception handling.
+While redirection is useful for debugging, in general project use it's usually not the best choice.
+
 #### Task 1 points
 
 (20 points total for this section)
@@ -152,11 +155,16 @@ I don't think Xarray is necessary for this miniproject.
 
 (20 points total for this section)
 
-* what are the median and variance observed from the temperature data (at least 100 values)  [3 points]
-* what are the median and variance observed from the occupancy data (at least 100 values)  [3 points]
-* plot the probability density function for each sensor type, from a single room of your choice
+Note: Include the code you used to make these determinations in a .py file e.g. analyze.py.
+
+The first 3 questions here are for **a single room of your choice**.
+The fourth question is time interval across all rooms, because the simulator generates a random time interval across all room types, that is each room has the same statistical time interval distribution.
+
+1. what are the median and variance observed from the temperature data (at least 100 values)  [3 points]
+2. what are the median and variance observed from the occupancy data (at least 100 values)  [3 points]
+3. plot the probability density function for each sensor type
  [6 points]
-* What is the mean and variance of the *time interval* of the sensor readings? Please plot its probability density function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points]
+4. What is the mean and variance of the *time interval* of the sensor readings? Please plot its probability density function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points]
 
 ### Task 3: Design
 
@@ -165,9 +173,12 @@ This is to make things simpler since asynchronous programming requires specific 
 
 (25 points total for this section)
 
-* implement an algorithm that detects anomalies in **temperature** sensor data
-* Does a persistent change in temperature always indicate a failed sensor?
-* What are possible bounds on temperature for each room type?
+1. implement an algorithm that detects anomalies in **temperature** sensor data. Print the percent of "bad" data points and determine the temperature median and variance with these bad data points discarded--the same room you did in Task 2 Question 1.
+
+(open-ended questions)
+
+2. Does a persistent change in temperature always indicate a failed sensor?
+3. What are possible bounds on temperature for each room type?
 
 ### Task 4: Conclusions
 
@@ -179,10 +190,10 @@ Please compose the report as if it were an informal engineering memo to give to 
 
 Some points to think about:
 
-* how is this simulation reflective of the real world?
-* how is this simulation deficient? What factors does it fail to account for?
-* how is the difficulty of initially using this Python websockets library as compared to a compiled language e.g. [C++ websockets](https://github.com/facundofarias/awesome-websockets#c-1)
-* would it be better to have the server poll the sensors, or the sensors reach out to the server when they have data?
+1. how is this simulation reflective of the real world?
+2. how is this simulation deficient? What factors does it fail to account for?
+3. how is the difficulty of initially using this Python websockets library as compared to a compiled language e.g. [C++ websockets](https://github.com/facundofarias/awesome-websockets#c-1)
+4. would it be better to have the server poll the sensors, or the sensors reach out to the server when they have data?
 
 ## Troubleshooting
 
