@@ -154,8 +154,9 @@ I don't think Xarray is necessary for this miniproject.
 
 * what are the median and variance observed from the temperature data (at least 100 values)  [3 points]
 * what are the median and variance observed from the occupancy data (at least 100 values)  [3 points]
-* plot the probability distribution function for each sensor type? [6 points]
-* What is the mean and variance of the *time interval* of the sensor readings? Please plot its probability distribution function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points]
+* plot the probability density function for each sensor type, from a single room of your choice
+ [6 points]
+* What is the mean and variance of the *time interval* of the sensor readings? Please plot its probability density function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points]
 
 ### Task 3: Design
 
