@@ -24,3 +24,20 @@ To keep your miniproject up to date with bug fixes and clarifications from the c
 
 If there are merge conflicts, you can
 [resolve the conflicts](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-using-the-command-line).
+if you'd rather not resolve the conflicts right now you can abort the process by
+
+```sh
+git rebase --abort
+```
+
+## Git commands to be careful with
+
+Git is not a backup system, and some Git commands can irrecoverably erase large amounts of work, including on the remote server.
+These commands are useful for experienced users but can cause trouble if not used carefully.
+Such commands include:
+
+```
+git reset
+git push --force
+git push --mirror
+```
