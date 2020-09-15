@@ -23,6 +23,7 @@ import websockets
 import argparse
 
 motd = b"x\x9csuvU\x08N\xcd\xcb\xcc/RpN,(.\xc9\xcfKU\xf0\xcc\x0fQ(\xce\xcc-\xcdI,\xc9/\x02\x00\xbe\xce\x0b\xe7"
+TIME_SCALE: float = None
 
 
 def get_simulated_rooms() -> T.Dict[str, T.Dict[str, float]]:
@@ -68,7 +69,7 @@ async def iot_handler(websocket, path):
 
     print("Connected:", websocket.remote_address)
     while True:
-        await asyncio.sleep(erlang.rvs(1, 0, size=1).item())
+        await asyncio.sleep(erlang.rvs(1, scale=TIME_SCALE).item())
 
         room = random.choice(list(rooms.keys()))
 
@@ -101,10 +102,15 @@ async def main(host: str, port: int):
 
 
 def cli():
+    global TIME_SCALE
+
     p = argparse.ArgumentParser(description="WebSocket IoT simulator server")
     p.add_argument("host", help="Host address", nargs="?", default="localhost")
     p.add_argument("port", help="network port", nargs="?", type=int, default=8765)
+    p.add_argument("-t", "--time_scale", help="time interval scale factor", type=float, default=1.0)
     P = p.parse_args()
+
+    TIME_SCALE = P.time_scale
 
     print("IoT server starting: ", P.host, "port", P.port)
     asyncio.run(main(P.host, P.port))
