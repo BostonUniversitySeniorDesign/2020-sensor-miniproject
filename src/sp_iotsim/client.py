@@ -35,9 +35,6 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
         where to store the data received (student must add code for this)
     """
 
-    if log_file:
-        log_file = Path(log_file).expanduser()
-
     uri = f"ws://{addr}:{port}"
 
     async with websockets.connect(uri) as websocket:
@@ -47,11 +44,11 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
         else:
             print(qb)
 
-        for i in range(max_packets):
+        if log_file:
+            log_file = Path(log_file).expanduser()
+
+        for _ in range(max_packets):
             data = await websocket.recv()
-            if i % 5 == 0:
-                pass
-                # print(f"{i} total messages received")
             print(data)
 
 
