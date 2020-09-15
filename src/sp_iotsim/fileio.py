@@ -1,13 +1,30 @@
 import typing as T
-import typing.io as Ti
-import sys
+import json
+from datetime import datetime
+import pandas
+from pathlib import Path
 
 
-def handle_packet(data: T.Union[str, bytes], f: Ti.TextIO):
-    if isinstance(data, str):
-        print(data)
-        f.write(data + "\n")
-    else:
-        print(
-            "unexpected binary data: ", data.decode("utf8", errors="ignore"), file=sys.stderr,
-        )
+def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
+
+    temperature = {}
+    occupancy = {}
+    co2 = {}
+
+    with open(file, "r") as f:
+        for line in f:
+            r = json.loads(line)
+            room = list(r.keys())[0]
+            time = datetime.fromisoformat(r[room]["time"])
+
+            temperature[time] = {room: r[room]["temperature"][0]}
+            occupancy[time] = {room: r[room]["occupancy"][0]}
+            co2[time] = {room: r[room]["co2"][0]}
+
+    data = {
+        "temperature": pandas.DataFrame.from_dict(temperature, "index").sort_index(),
+        "occupancy": pandas.DataFrame.from_dict(occupancy, "index").sort_index(),
+        "co2": pandas.DataFrame.from_dict(co2, "index").sort_index(),
+    }
+
+    return data
