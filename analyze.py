@@ -20,10 +20,12 @@ from sp_iotsim.fileio import load_data
 def plot_time(time: pandas.Series):
     """
     NOTE: in this simulation, time interval is same distribution for all sensors and rooms
+
+    https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_continuous.fit.html
     """
 
     ax = plt.figure().gca()
-    ax.hist(time.diff().dt.total_seconds())
+    ax.hist(time.diff().dt.total_seconds(), bins=100)
     ax.set_xlabel("Time (seconds)")
     ax.set_title("Time interval")
     ax.set_ylabel("# of occurences")

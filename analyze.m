@@ -5,7 +5,14 @@ end
 
 dat = load_data(file);
 
-disp("loaded data from " + datestr(dat.time(1)) + " to " + datestr(dat.time(end)))
+plot_time(dat.time)
+
+end
+
+
+function plot_time(time)
+
+histfit(seconds(diff(time)), 100, 'Gamma')
 
 end
 
