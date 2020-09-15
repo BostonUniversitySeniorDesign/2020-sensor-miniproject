@@ -11,10 +11,22 @@ Feel free to save your data in a better format--I was just showing what one migh
 
 from pathlib import Path
 import argparse
+import pandas
 import matplotlib.pyplot as plt
-import numpy as np
 
 from sp_iotsim.fileio import load_data
+
+
+def plot_time(time: pandas.Series):
+    """
+    NOTE: in this simulation, time interval is same distribution for all sensors and rooms
+    """
+
+    ax = plt.figure().gca()
+    ax.hist(time.diff().dt.total_seconds())
+    ax.set_xlabel("Time (seconds)")
+    ax.set_title("Time interval")
+    ax.set_ylabel("# of occurences")
 
 
 if __name__ == "__main__":
@@ -26,12 +38,10 @@ if __name__ == "__main__":
 
     data = load_data(file)
 
-    for k in data:
-        # data[k].plot()
-        time = data[k].index
-        data[k].hist()
-        plt.figure()
-        plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-        plt.xlabel("Time (seconds)")
+    plot_time(data["temperature"].index.to_series())
+
+    # for k in data:
+    #     data[k].hist()
+    #     plt.figure()
 
     plt.show()
