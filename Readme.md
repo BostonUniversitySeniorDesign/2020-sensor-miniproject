@@ -35,6 +35,16 @@ indicates an asynchronous function instead of
 [def](https://realpython.com/defining-your-own-python-function/)
 for an plain Python function.
 
+### Purpose
+
+Miniproject learning outcomes include:
+
+0. familiarity with running programs from Terminal with command line parameters  [Task 0]
+1. reading and making small edits to programs in a script languages (Python)  [Task 1]
+2. Computing common statistical measures of data (mean, median, variance) and plotting and understanding data histograms [Task 2]
+3. Analyze and filter data to gain understanding about imperfections in the data based on reasonable expectations of the data [Task 3]
+4. Understand the high-level limitations of a simulation and think about straightforward ways to improve the simulation's utility [Task 4]
+
 ## Assignment
 
 This assignment is done in two-person teams, where each student should run the simulation and work together on the analysis and turn in **one joint report**.
