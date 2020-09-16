@@ -22,17 +22,23 @@ def test_generate():
     assert sorted(dat.keys()) == ["co2", "occupancy", "temperature", "time"], "wrong keys"
 
 
-@pytest.mark.timeout(20)
+def test_need_logcode(servlet, tmp_path):
+
+    with pytest.raises(NotImplementedError):
+        asyncio.run(client.main(8765, "localhost", 2, log_file=tmp_path / "nobody.txt"))
+    servlet.terminate()
+
+
 def test_server_client(servlet, capsys, tmp_path):
     """
     this is not a typical way to write a data file, but is used here
     since the assignment tasks include writing a file so I did this test
     unconventionally
     """
-    N = 5
+    N = 2
     fn = tmp_path / "test.log"
 
-    asyncio.run(client.main(8765, "localhost", N, log_file=fn))
+    asyncio.run(client.main(8765, "localhost", N))
     servlet.terminate()
 
     stdout, stderr = capsys.readouterr()

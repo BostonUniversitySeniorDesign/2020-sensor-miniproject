@@ -45,6 +45,12 @@ def plot_temperature(temp: pandas.Series, name: str):
     ax.set_xlabel(r"Temperature [$^\circ$C]")
     ax.set_title(f"{name} temperature")
 
+    ax = plt.figure().gca()
+    ax.plot(temp.index, temp.values)
+    ax.set_xlabel("time")
+    ax.set_ylabel(r"Temperature [$^\circ$C]")
+    ax.set_title(f"{name} temperature")
+
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="load and analyse IoT JSON data")

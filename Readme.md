@@ -246,9 +246,11 @@ See [Python.md](./Python.md) for how to switch Python versions.
 
 ### client
 
-> in create_connection
->     raise OSError('Multiple exceptions: {}'.format(
-> OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+```
+in create_connection
+     raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+```
 
 This typically indicates that Websockets server isn't running (or wasn't fully started when client was started).
 When running, the terminal where you typed
