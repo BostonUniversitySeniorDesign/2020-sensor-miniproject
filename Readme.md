@@ -93,6 +93,8 @@ The help for each of these programs is printed by adding the `-h` option to the 
 python -m sp_iotsim.server -h
 ```
 
+For example, setting the server `-t` option to a shorter time makes the server emits simulated data faster, saving time.
+
 ---
 
 Python code can be debugged by inserting a breakpoint into the code, as is typical in many programming languages.
@@ -260,3 +262,13 @@ will print:
 ```
 IoT server starting:  localhost port 8765
 ```
+
+When a client connects or disconnects, the server prints to terminal like:
+
+```
+Connected: ('::1', 55771, 0, 0)
+Closed: ('::1', 55771, 0, 0)
+```
+
+The "55771" is a random port used by each client.
+The "::1" is "localhost" or own network interface for IPv6.
