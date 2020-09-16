@@ -26,14 +26,30 @@ def plot_time(time: pandas.Series):
 
     ax = plt.figure().gca()
     ax.hist(time.diff().dt.total_seconds(), bins=100)
-    ax.set_xlabel("Time (seconds)")
+    ax.set_xlabel("Elapsed Time (seconds)")
     ax.set_title("Time interval")
     ax.set_ylabel("# of occurences")
+    ax.grid(True)
+
+
+def plot_temperature(temp: pandas.Series, name: str):
+    """
+    Plot temperature for a room
+    """
+
+    temp = temp.dropna()
+    # get rid of nuisance empty values with .dropna()
+    ax = plt.figure().gca()
+    temp.hist(ax=ax)
+    ax.set_ylabel("# of occurences")
+    ax.set_xlabel(r"Temperature [$^\circ$C]")
+    ax.set_title(f"{name} temperature")
 
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
     p.add_argument("file", help="path to JSON data file")
+    p.add_argument("room", help="room to plot")
     P = p.parse_args()
 
     file = Path(P.file).expanduser()
@@ -42,8 +58,6 @@ if __name__ == "__main__":
 
     plot_time(data["temperature"].index.to_series())
 
-    # for k in data:
-    #     data[k].hist()
-    #     plt.figure()
+    plot_temperature(data["temperature"][P.room], P.room)
 
     plt.show()
