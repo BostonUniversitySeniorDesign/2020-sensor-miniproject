@@ -12,8 +12,18 @@ end
 
 function plot_time(time)
 
-histfit(seconds(diff(time)), 100, 'Gamma')
+intervals = seconds(diff(time));
 
+pd = fitdist(intervals(:), 'Gamma');
+% example of estimating parameters
+
+histfit(intervals(:), 100, 'Gamma')
+xlabel('time interval (seconds)')
+ylabel('occurences')
+
+legend('data', 'fit')
+
+title('time interval observed')
 end
 
 

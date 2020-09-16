@@ -192,7 +192,7 @@ The fourth question is time interval across all rooms, because the simulator gen
 2. what are the median and variance observed from the occupancy data (at least 100 values)  [3 points]
 3. plot the probability density function for each sensor type
  [6 points]
-4. What is the mean and variance of the *time interval* of the sensor readings? Please plot its probability density function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points]
+4. What is the mean and variance of the *time interval* of the sensor readings? Please plot the time interval histogram. Does it mimic a well-known [distribution](https://en.wikipedia.org/wiki/Erlang_distribution) for connection intervals in large systems? [8 points]
 
 ### Task 3: Design
 
