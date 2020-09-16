@@ -155,7 +155,7 @@ I don't think Xarray is necessary for this miniproject.
 
 (20 points total for this section)
 
-Note: Include the code you used to make these determinations in a .py file e.g. analyze.py.
+Note: Include the code you used to make these determinations in a .py file e.g. analyze.py or whatever you choose to name it.
 
 The first 3 questions here are for **a single room of your choice**.
 The fourth question is time interval across all rooms, because the simulator generates a random time interval across all room types, that is each room has the same statistical time interval distribution.
@@ -171,9 +171,26 @@ The fourth question is time interval across all rooms, because the simulator gen
 This coding would take place in a separate script you create.
 This is to make things simpler since asynchronous programming requires specific syntax and practices that complicate things in a short project like this.
 
+You would observe for Task 2 Question 1 that the temperature variance for your chosen room is larger than expected due to "bad" data values that are unrealistically large and small.
+There are not many of these bad values, but they make the variance quite larger than would be expected.
+
 (25 points total for this section)
 
 1. implement an algorithm that detects anomalies in **temperature** sensor data. Print the percent of "bad" data points and determine the temperature median and variance with these bad data points discarded--the same room you did in Task 2 Question 1.
+
+NOTE: Instead of for-looping over the data array, it's generally several orders of magnitude faster to use logical indexing. In this example, suppose "temp" is the temperature values for your room, and we say that temperature values less than -100 C or greater than +100 C are unrealistic (please use your own criteria).
+
+```python
+i = (temp > -100) & (temp < 100)
+filtered_temp = temp[i]
+```
+
+You will see that "temp" would have a length say of 1000, and "filtered_temp" would have a length of say 990 if 1% of the values were "bad".
+Get the length (number of elements) of a Numpy or Pandas array like:
+
+```python
+temp.size
+```
 
 (open-ended questions)
 
