@@ -84,6 +84,32 @@ then open another Terminal / Command Prompt and type:
 python -m sp_iotsim.client
 ```
 
+---
+
+Many command-line programs have a command line interface that includes a short "help" printout.
+The help for each of these programs is printed by adding the `-h` option to the program call, e.g.
+
+```sh
+python -m sp_iotsim.server -h
+```
+
+---
+
+Python code can be debugged by inserting a breakpoint into the code, as is typical in many programming languages.
+Python
+[breakpoint](https://docs.python.org/3/library/functions.html#breakpoint)
+is inserted by adding a line to the code:
+
+```python
+breakpoint()
+```
+
+Commonly used [debugger commands](https://docs.python.org/3/library/pdb.html#debugger-commands) include:
+
+* c: continue
+* n: next line
+* s: step into function
+
 #### Task 0 points
 
 (15 points for this section)
