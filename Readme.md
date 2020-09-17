@@ -144,22 +144,19 @@ Example snippet:
 ```python
 from pathlib import Path
 
-# other code; argparse sets P.log value from command line
+# function ...
 
-filename = Path(P.log).expanduser()
+     # setup connection, then
 
-# other code
+     log_file = Path(log_file).expanduser()
+     file = log_file.open("a")
 
-file = filename.open("a")
+     # for loop:
+          # read line of data from server, then
 
-# other code
+          file.write(txt + "\n")
 
-file.write(txt + "\n")
-file.flush()
-
-# other code
-
-file.close()
+     file.close()
 ```
 
 While file I/O streaming and many other options exist, for this assignment we can simply write within the main `for` or `while` loop.
@@ -213,7 +210,7 @@ There are not many of these bad values, but they make the variance quite larger 
 
 (25 points total for this section)
 
-1. implement an algorithm that detects anomalies in **temperature** sensor data. Print the percent of "bad" data points and determine the temperature median and variance with these bad data points discarded--the same room you did in Task 2 Question 1.
+1. implement an algorithm that detects anomalies in **temperature** sensor data. Print the percent of "bad" data points and determine the temperature median and variance with these bad data points discarded--the same room you did in Task 2 Question 1. [15 points]
 
 NOTE: Instead of for-looping over the data array, it's generally several orders of magnitude faster to use logical indexing. In this example, suppose "temp" is the temperature values for your room, and we say that temperature values less than -100 C or greater than +100 C are unrealistic (please use your own criteria).
 
@@ -231,8 +228,8 @@ temp.size
 
 (open-ended questions)
 
-2. Does a persistent change in temperature always indicate a failed sensor?
-3. What are possible bounds on temperature for each room type?
+2. Does a persistent change in temperature always indicate a failed sensor? [5 points]
+3. What are possible bounds on temperature for each room type? [5 points]
 
 ### Task 4: Conclusions
 
