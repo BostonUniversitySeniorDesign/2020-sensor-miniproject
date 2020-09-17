@@ -1,38 +1,7 @@
-function analyze(file)
-arguments
-  file (1,1) string
-end
-
-dat = load_data(file);
-
-plot_time(dat.time)
-
-end
-
-
-function plot_time(time)
-
-intervals = seconds(diff(time));
-
-pd = fitdist(intervals(:), 'Gamma');
-% example of estimating parameters
-
-histfit(intervals(:), 100, 'Gamma')
-xlabel('time interval (seconds)')
-ylabel('occurences')
-
-legend('data', 'fit')
-
-title('time interval observed')
-end
-
-
 function dat = load_data(file)
 arguments
-  file (1,1) string
+  file (1,1) string {mustBeFile}
 end
-
-assert(isfile(file), 'need JSON file to load')
 
 fid = fopen(file, "r");
 
